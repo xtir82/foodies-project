@@ -177,7 +177,7 @@ db.prepare(`
     )
 `).run();
 
-async function initData() {
+const initData = async() => {
     const stmt = db.prepare(`
       INSERT INTO meals VALUES (
          null,
