@@ -2,7 +2,20 @@ import React from 'react';
 import Image from 'next/image';import {notFound} from "next/navigation";
 
 import styles from './page.module.css';
-import {getMeal} from '@/lib/meals.js'
+import {getMeal} from '@/lib/meals.js';
+
+export const generateMetadata =  async({params}) => {
+    const meal = getMeal(params.mealSlug);
+
+    if (!meal) {
+        notFound()
+    }
+
+    return {
+        title: meal.title,
+        description: meal.summary
+    }
+}
 
 const MealDetailPage = ({params}) => {
     const meal = getMeal(params.mealSlug)
